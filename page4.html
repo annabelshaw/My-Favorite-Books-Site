@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module 5 Course Project</title>
+    <link rel="stylesheet" href="themes/CourseProject.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+        function addFavorite() {
+            var favoriteItem = prompt("Enter your recommendation:");
+            if (favoriteItem !== null && favoriteItem !== "") {
+                if (localStorage.getItem("favorites") === null) {
+                    var favorites = [];
+                } else {
+                    var favorites = JSON.parse(localStorage.getItem("favorites"));
+                }
+                favorites.push(favoriteItem);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+                displayFavorites();
+            }
+        }
+
+        function displayFavorites() {
+            var favorites = JSON.parse(localStorage.getItem("favorites"));
+            if (favorites !== null) {
+                var favoriteList = document.getElementById("favoriteList");
+                // Do not clear the list, just add new items
+                for (var i = 0; i < favorites.length; i++) {
+                    var listItem = document.createElement("li");
+                    listItem.appendChild(document.createTextNode(favorites[i]));
+                    favoriteList.appendChild(listItem);
+                }
+            }
+        }
+
+        window.onload = function () {
+            displayFavorites();
+        };
+    </script>
+</head>
+
+<body>
+    <div data-role="page">
+        <div data-role="panel" id="myPanel" data-display="overlay">
+            <h2>Menu</h2>
+            <ul data-role="listview" data-theme="c">
+                <li class="menu"><a href="index.html">Home</a></li>
+                <li class="menu"><a href="page2.html">Favorite Books of the Year</a></li>
+                <li class="menu"><a href="page3.html">Favorite Books of All Time</a></li>
+                <li class="menu"><a href="page4.html">To Be Read List</a></li>
+                <li class="menu"><a href="page5.html">Form</a></li>
+            </ul>
+            <p>You can close this menu by clicking outside of it, pressing the Esc key, or by swiping.</p>
+        </div>
+
+        <div data-role="header" class="header">
+            <h1>My Favorite Books</h1>
+            <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
+        </div>
+
+        <div class="navigation" data-role="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html">Favorite Books of the Year</a></li>
+                <li><a href="page3.html">Favorite Books of All Time</a></li>
+                <li><a href="page4.html" class="ui-btn-active">To Be Read List</a></li>
+                <li><a href="page5.html">Form</a></li>
+            </ul>
+        </div>
+
+        <div role="main" class="ui-content">
+            <!-- List of "favorite" items -->
+            <h2>To Be Read List:</h2>
+            <ul id="favoriteList">
+                <li>The Hollow Places by T. Kingfisher</li>
+                <li>Project Hail Mary by Andy Weir</li>
+            </ul>
+            <!-- Button to add "favorite" item -->
+            <button onclick="addFavorite()">Add a Recommendation</button>
+        </div>
+
+        <div data-role="footer" data-theme="a">
+            <h4>Annabel Shaw &copy; 2023</h4>
+        </div>
+
+    </div>
+</body>
+
+</html>

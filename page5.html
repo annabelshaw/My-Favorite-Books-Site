@@ -1,0 +1,114 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module 5 Course Project</title>
+    <link rel="stylesheet" href="themes/CourseProject.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div data-role="page">
+      <div data-role="panel" id="myPanel" data-display="overlay">
+        <h2>Menu</h2>
+        <ul data-role="listview" data-theme="c">
+          <li class="menu"><a href="index.html">Home</a></li>
+          <li class="menu"><a href="page2.html">Favorite Books of the Year</a></li>
+          <li class="menu"><a href="page3.html">Favorite Books of All Time</a></li>
+          <li class="menu"><a href="page4.html">To Be Read List</a></li>
+          <li class="menu"><a href="page5.html">Form</a></li>
+        </ul>
+        <p>You can close this menu by clicking outside of it, pressing the Esc key, or by swiping.</p>
+      </div>
+
+        <div data-role="header" class="header">
+            <h1>My Favorite Books</h1>
+            <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
+        </div>
+
+        <div data-role="navbar" data-iconpos="top" class="navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html" >Favorite Books of the Year</a></li>
+                <li><a href="page3.html" >Favorite Books of All Time</a></li>
+                <li><a href="page4.html" >To Be Read List</a></li>
+                <li><a href="page5.html" class="ui-btn-active">Form</a></li>
+            </ul>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <form id="bookRecommendationForm">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br><br>
+
+                <label for="favoriteBook">Favorite Book:</label><br>
+                <input type="text" id="favoriteBook" name="favoriteBook"><br><br>
+
+                <label for="favoriteGenre">Favorite Genre:</label><br>
+                <select id="favoriteGenre" name="favoriteGenre">
+                    <option value="fantasy">Fantasy</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="romance">Romance</option>
+                    <option value="scienceFiction">Science Fiction</option>
+                    <option value="nonFiction">Non-Fiction</option>
+                </select><br><br>
+
+                <label for="bookRecommendations">Book Recommendations:</label><br>
+                <textarea id="bookRecommendations" name="bookRecommendations" rows="4" cols="50"></textarea><br><br>
+
+                <input type="button" value="Submit" onclick="saveForm()">
+            </form>
+        </div>
+
+        <div data-role="footer" class="footer">
+            <h4>&copy; 2023 Annabel Shaw</h4>
+        </div>
+
+
+
+        <script>
+            function saveForm() {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const favoriteBook = document.getElementById('favoriteBook').value;
+                const favoriteGenre = document.getElementById('favoriteGenre').value;
+                const bookRecommendations = document.getElementById('bookRecommendations').value;
+
+                const formData = {
+                    name: name,
+                    email: email,
+                    favoriteBook: favoriteBook,
+                    favoriteGenre: favoriteGenre,
+                    bookRecommendations: bookRecommendations
+                };
+
+                localStorage.setItem('formData', JSON.stringify(formData));
+                alert('Form data saved successfully.');
+
+                // Reset the form after submission
+                document.getElementById('bookRecommendationForm').reset();
+            }
+
+            window.onload = function () {
+                const savedFormData = localStorage.getItem('formData');
+                if (savedFormData) {
+                    const parsedData = JSON.parse(savedFormData);
+                    document.getElementById('name').value = parsedData.name;
+                    document.getElementById('email').value = parsedData.email;
+                    document.getElementById('favoriteBook').value = parsedData.favoriteBook;
+                    document.getElementById('favoriteGenre').value = parsedData.favoriteGenre;
+                    document.getElementById('bookRecommendations').value = parsedData.bookRecommendations;
+                }
+            };
+        </script>
+        <button class="ui-btn" onclick="history.back()">Back</button>
+    </div>
+</body>
+
+</html>

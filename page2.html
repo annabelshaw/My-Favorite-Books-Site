@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Module 5 Course Project</title>
+    <link rel="stylesheet" href="themes/CourseProject.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div data-role="page">
+
+        <div data-role="panel" id="myPanel" data-display="overlay">
+            <h2>Menu</h2>
+            <ul data-role="listview" data-theme="c">
+                <li class="menu"><a href="index.html">Home</a></li>
+                <li class="menu"><a href="page2.html">Favorite Books of the Year</a></li>
+                <li class="menu"><a href="page3.html">Favorite Books of All Time</a></li>
+                <li class="menu"><a href="page4.html">To Be Read List</a></li>
+                <li class="menu"><a href="page5.html">Form</a></li>
+            </ul>
+            <p>You can close this menu by clicking outside of it, pressing the Esc key, or by swiping.</p>
+        </div>
+
+        <div data-role="header" class="header">
+            <h1>My Favorite Books</h1>
+            <a href="#myPanel" class="ui-btn ui-btn-inline">Menu</a>
+        </div>
+
+        <div class="navigation" data-role="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="page2.html" class="ui-btn-active">Favorite Books of the Year</a></li>
+                <li><a href="page3.html">Favorite Books of All Time</a></li>
+                <li><a href="page4.html">To Be Read List</a></li>
+                <li><a href="page5.html">Form</a></li>
+            </ul>
+        </div>
+
+        <div data-role="content">
+            <ul data-role="listview" data-theme="c" data-filter="true">
+                <li data-icon="bars">
+                    <a href="#">
+                        <h2>Nothing to See Here</h2>
+                        <p>Author: Kevin Wilson</p>
+                        <p>Genre: Fiction</p>
+                        <p>Rating: 5</p>
+                    </a>
+                </li>
+                <li data-icon="bars">
+                    <a href="#">
+                        <h2>The Hike</h2>
+                        <p>Author: Drew Magary</p>
+                        <p>Genre: Fantasy / Horror</p>
+                        <p>Rating: 5</p>
+                    </a>
+                </li>
+                <!-- Add more list items as needed -->
+            </ul>
+        </div>
+
+        <div data-role="footer">
+            <h4>&copy; 2023 Annabel Shaw</h4>
+        </div>
+
+        <button class="ui-btn" onclick="history.back()">Back</button>
+    </div>
+
+</body>
+
+</html>
